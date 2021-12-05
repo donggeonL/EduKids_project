@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title>True or False Quiz</title>
+    <link href="../main/styles.css" rel="stylesheet" />
+    <script src="../main/navbar.js" defer></script>
+    <link href="../main/navbar.css" rel="stylesheet" />
+    <style>
+        .wrapper {
+            padding-top: 200px;
+            padding-bottom: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn_wrapper{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .font__text {
+            padding: 0px;
+            font-size: 20pt;
+        }
+
+        #frame {
+            width: 600px;
+            background: #fff;
+            border: 2px solid #e2e60e;
+            border-radius: 20px;
+            box-shadow: 5px 5px 5px #fdff85;
+        }
+
+        .btn {
+            width: 200px;
+            margin: 15px 15px;
+            border: 2px solid #e2e60e;
+            border-radius: 20px;
+        }
+
+        .btn:nth-child(2n) {
+            margin-right: 0;
+        }
+
+        .btn:hover {
+            background: #fdff85;
+            color: black;
+        }
+
+        #font {
+            padding-top: 20px;
+            color: #333;
+            font-size: 2.4em;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="navbar_logo">
+            <a href="http://1.253.254.107/deu20163137/edugame/main/">
+                <img
+                    src="https://media.discordapp.net/attachments/802849755751252002/909798587674796072/logowebver.png" />
+            </a>
+        </div>
+
+        <ul class="navbar_menu" style="padding-top: 15px;">
+            <li><a href="http://1.253.254.107/deu20163137/edugame/main/#portfolio">Game</a></li>
+            <li><a href="http://1.253.254.107/deu20163137/edugame/signup/signup.html">SignIn</a></li>
+        </ul>
+
+    </nav>
+
+
+    <div class="wrapper">
+        <div id="frame">
+            <div id="font">
+                <h3>동물 맞추기 게임!!</h3>
+                <text class="font__text"><text id="problem__no">?</text>번 문제</text>
+                <br />
+                <text class="font__text">점수: <text id="score">0</text></text>
+                <hr style="border: 1px solid yellow;" />
+
+                <div id="disappear001">
+                    <button class="btn" onclick="start()">시작하기</button>
+                </div>
+
+                <p id="message001"></p>
+                <p class="btn_wrapper" id="message002"></p>
+                <p id="message003"></p>
+                <p id="message004"></p>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // alert("동물 맞추기 게임입니다. \n그림을 보고 정답을 맞춰주세요. \n1문제당 10점")
+        var question001 = [
+            "<img src= 주소넣기 height=40 /><br />무슨 동물일까요 ??? ",
+            "<img src= 주소넣기 height=40 /><br />무슨 동물일까요 ??? ",
+            "<img src= 주소넣기 height=40 /><br />무슨 동물일까요 ??? ",
+            "<img src= 주소넣기 height=40 /><br />무슨 동물일까요 ??? ",
+            "<img src= 주소넣기 height=40 /><br />무슨 동물일까요 ??? ",
+            "<img src= 주소넣기 height=40 /><br />무슨 동물일까요 ??? ",
+            "<img src= 주소넣기 height=40 /><br />무슨 동물일까요 ??? ",
+            "<img src= 주소넣기 height=40 /><br />무슨 동물일까요 ??? ",
+            "<img src= 주소넣기 height=40 /><br />무슨 동물일까요 ??? ",
+            "<img src= 주소넣기 height=40 /><br />무슨 동물일까요 ??? "
+        ];
+
+        var options001 = ["<button class=btn onclick=wrong()>동물 이름</button> <button class=btn onclick=wrong()>동물 이름</button> <button class=btn onclick=correct()>동물 이름</button>"];
+        var options002 = ["<button class=btn onclick=wrong()>동물 이름</button> <button class=btn onclick=wrong()>동물 이름</button> <button class=btn onclick=correct()>동물 이름</button>"];
+        var options003 = ["<button class=btn onclick=wrong()>동물 이름</button> <button class=btn onclick=wrong()>동물 이름</button> <button class=btn onclick=correct()>동물 이름</button>"];
+        var options004 = ["<button class=btn onclick=wrong()>동물 이름</button> <button class=btn onclick=wrong()>동물 이름</button> <button class=btn onclick=correct()>동물 이름</button>"];
+        var options005 = ["<button class=btn onclick=wrong()>동물 이름</button> <button class=btn onclick=wrong()>동물 이름</button> <button class=btn onclick=correct()>동물 이름</button>"];
+        var options006 = ["<button class=btn onclick=wrong()>동물 이름</button> <button class=btn onclick=wrong()>동물 이름</button> <button class=btn onclick=correct()>동물 이름</button>"];
+        var options007 = ["<button class=btn onclick=wrong()>동물 이름</button> <button class=btn onclick=wrong()>동물 이름</button> <button class=btn onclick=correct()>동물 이름</button>"];
+        var options008 = ["<button class=btn onclick=wrong()>동물 이름</button> <button class=btn onclick=wrong()>동물 이름</button> <button class=btn onclick=correct()>동물 이름</button>"];
+        var options009 = ["<button class=btn onclick=wrong()>동물 이름</button> <button class=btn onclick=wrong()>동물 이름</button> <button class=btn onclick=correct()>동물 이름</button>"];
+        var options010 = ["<button class=btn onclick=wrong()>동물 이름</button> <button class=btn onclick=wrong()>동물 이름</button> <button class=btn onclick=correct()>동물 이름</button>"];
+
+        var a = 0;
+        a++;
+        var b = 0;
+
+        function start() {
+            disappear001.innerHTML = "";
+            message001.innerHTML = question001[0];
+            message002.innerHTML = options001;
+            problem__no.innerHTML = a++;
+        }
+
+        function correct() {
+            message002.innerHTML = "";
+            message003.innerHTML = "정답!";
+            score.innerHTML = b+=10;
+            message004.innerHTML = "<button class=btn onclick=next()>다음문제!</button>";
+        }
+
+        function wrong() {
+            message002.innerHTML = "";
+            message003.innerHTML = "땡!";
+            message004.innerHTML = "<button class=btn onclick=next()>다음문제!</button>";
+        }
+
+        function next() {
+            if (a == "2") {
+                message001.innerHTML = question001[1];
+                message002.innerHTML = options002;
+                message003.innerHTML = "";
+                problem__no.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "3") {
+                message001.innerHTML = question001[2];
+                message002.innerHTML = options003;
+                message003.innerHTML = "";
+                problem__no.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+
+            else if (a == "4") {
+                message001.innerHTML = question001[3];
+                message002.innerHTML = options004;
+                message003.innerHTML = "";
+                problem__no.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "5") {
+                message001.innerHTML = question001[4];
+                message002.innerHTML = options005;
+                message003.innerHTML = "";
+                problem__no.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "6") {
+                message001.innerHTML = question001[5];
+                message002.innerHTML = options006;
+                message003.innerHTML = "";
+                problem__no.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "7") {
+                message001.innerHTML = question001[6];
+                message002.innerHTML = options007;
+                message003.innerHTML = "";
+                problem__no.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "8") {
+                message001.innerHTML = question001[7];
+                message002.innerHTML = options008;
+                message003.innerHTML = "";
+                problem__no.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "9") {
+                message001.innerHTML = question001[8];
+                message002.innerHTML = options009;
+                message003.innerHTML = "";
+                problem__no.innerHTML = a++;
+                message004.innerHTML = "";
+            }
+
+            else if (a == "10") {
+                message001.innerHTML = question001[9];
+                message002.innerHTML = options010;
+                message003.innerHTML = "";
+                problem__no.innerHTML = a++;
+                message004.innerHTML = "";
+            } else {
+                message001.innerHTML = "다음에 또 봐요~!";
+                message002.innerHTML = "";
+                message003.innerHTML = "";
+                message004.innerHTML = "<button class=btn onclick=repeat()>다시하기</button>";
+            }
+        }
+
+        function repeat() {
+            location.reload();
+        }
+    </script>
+    <div class="copyright py-4 text-center text-white">
+        <div class="container"><small>Copyright &copy; Our Website 21.12.20</small></div>
+    </div>
+</body>
+
+</html>

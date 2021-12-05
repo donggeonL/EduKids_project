@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <!-- integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+    <!--    Navbar 관련 -->
+    <link href="../main/styles.css" rel="stylesheet" />
+    <script src="../main/navbar.js" defer></script>
+    <link href="../main/navbar.css" rel="stylesheet" />
+    <title>Cross Word</title>
+    <style>
+        ::placeholder {
+            font-size: 11pt;
+        }
+
+        .block {
+            width: 44px;
+            height: 44px;
+            border: 1px solid cornflowerblue;
+            text-align: center;
+            border-radius: 5px;
+            font-family: Montserrat;
+            font-size: 17pt;
+        }
+
+        .right {
+            width: 44px;
+            height: 44px;
+            border: 1px solid green;
+            color: green;
+            text-align: center;
+            border-radius: 5px;
+            font-family: Montserrat;
+            font-size: 17pt;
+        }
+
+        .wrong {
+            width: 44px;
+            height: 44px;
+            border: 1px solid red;
+            color: red;
+            text-align: center;
+            border-radius: 5px;
+            font-family: Montserrat;
+            font-size: 17pt;
+        }
+
+        .but {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar_logo">
+            <a href="http://1.253.254.107/deu20163137/edugame/main/">
+                <img
+                    src="https://media.discordapp.net/attachments/802849755751252002/909798587674796072/logowebver.png" />
+            </a>
+        </div>
+
+        <ul class="navbar_menu" style="padding-top: 15px;">
+            <li><a href="http://1.253.254.107/deu20163137/edugame/main/#portfolio">Game</a></li>
+            <li><a href="http://1.253.254.107/deu20163137/edugame/signup/signup.html">SignIn</a></li>
+        </ul>
+
+    </nav>
+
+    <div class="container" style="padding-top: 130px; padding-bottom: 100px;">
+        <div class="wrapper">
+            <div class="row" style="background:snow; border-radius: 15px; padding: 5px;">
+                <div class="col-md" style=" border-radius: 15px; padding: 5px; width: auto;">
+                    <table style="margin: auto;">
+                        <tr>
+                            <td><input id="t1" placeholder="1" type="text" class="block" maxlength="1"></td>
+                            <td><input id="t2" placeholder="10" type="text" class="block" maxlength="1"></td>
+                            <td></td>
+                            <td><input id="t3" placeholder="11" type="text" class="block" maxlength="1"></td>
+                            <td></td>
+                            <td><input id="t4" placeholder="2" type="text" class="block" maxlength="1"></td>
+                            <td><input id="t5" type="text" class="block" maxlength="1"></td>
+                            <td><input id="t6" placeholder="13" type="text" class="block" maxlength="1"></td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td><input id="t7" placeholder="3" type="text" class="block" maxlength="1"></td>
+                            <td><input id="t8" placeholder="14" type="text" class="block" maxlength="1"></td>
+                            <td><input id="t9" type="text" class="block" maxlength="1"></td>
+                            <td><input id="t10" placeholder="15" type="text" class="block" maxlength="1"></td>
+                            <td><input id="t11" placeholder="12" type="text" class="block" maxlength="1"></td>
+                            <td></td>
+                            <td><input id="t12" type="text" class="block" maxlength="1"></td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td><input id="t13" type="text" class="block" maxlength="1"></td>
+                            <td></td>
+                            <td><input id="t14" type="text" class="block" maxlength="1"></td>
+                            <td></td>
+                            <td><input id="t15" placeholder="4" type="text" class="block" maxlength="1"></td>
+                            <td><input id="t16" type="text" class="block" maxlength="1"></td>
+                        </tr>
+
+                        <tr>
+                            <td><input id="t17" placeholder="5" type="text" class="block" maxlength="1"></td>
+                            <td><input id="t18" type="text" class="block" maxlength="1"></td>
+                            <td><input id="t19" type="text" class="block" maxlength="1"></td>
+                            <td></td>
+                            <td><input id="t20" type="text" class="block" maxlength="1"></td>
+                            <td></td>
+                            <td><input id="t21" placeholder="16" type="text" class="block" maxlength="1"></td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td><input id="t22" placeholder="17" type="text" class="block" maxlength="1"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><input id="t23" placeholder="6" type="text" class="block" maxlength="1"></td>
+                            <td><input id="t24" type="text" class="block" maxlength="1"></td>
+                            <td><input id="t25" type="text" class="block" maxlength="1"></td>
+                            <td><input id="t26" placeholder="18" type="text" class="block" maxlength="1"></td>
+                        </tr>
+
+                        <tr>
+                            <td><input id="t27" placeholder="7" type="text" class="block" maxlength="1"></td>
+                            <td><input id="t28" type="text" class="block" maxlength="1"></td>
+                            <td><input id="t29" placeholder="19" type="text" class="block" maxlength="1"></td>
+                            <td><input id="t30" type="text" class="block" maxlength="1"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><input id="t31" type="text" class="block" maxlength="1"></td>
+                        </tr>
+
+                        <tr>
+                            <td><input id="t32" type="text" class="block" maxlength="1"></td>
+                            <td></td>
+                            <td><input id="t33" type="text" class="block" maxlength="1"></td>
+                            <td></td>
+                            <td><input id="t34" placeholder="8" type="text" class="block" maxlength="1"></td>
+                            <td><input id="t35" type="text" class="block" maxlength="1"></td>
+                            <td><input id="t36" type="text" class="block" maxlength="1"></td>
+                            <td><input id="t37" type="text" class="block" maxlength="1"></td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td><input id="t38" placeholder="9" type="text" class="block" maxlength="1"></td>
+                            <td><input id="t39" type="text" class="block" maxlength="1"></td>
+                            <td><input id="t40" type="text" class="block" maxlength="1"></td>
+                            <td><input id="t41" placeholder="20" type="text" class="block" maxlength="1"></td>
+                            <td></td>
+                            <td></td>
+                            <td><input id="t42" type="text" class="block" maxlength="1"></td>
+                        </tr>
+
+
+
+
+                    </table>
+                    <br>
+                    <div class="but" style="align-items: center;">
+                        <!-- 채점하기 버튼 -->
+                        <button class="btn btn-primary" style="margin-right: 15px;"
+                            onclick="crosswordcheck()">채점하기</button>
+                        <!-- 채점결과 버튼 -->
+                        <button class="btn btn-primary" style="margin-right: 15px;"
+                            onClick="cross_score()">채점결과</button>
+                        <!-- 초기화 버튼 -->
+                        <button class="btn btn-primary" onClick=" window.location.reload(); ">초기화</button>
+                    </div>
+                    <div>
+                        <p style="border: solid 1px cornflowerblue; background:lavender; padding: 15px; width: auto; -moz-border-radius: 15px; -khtml-border-radius: 15px; border-radius: 15px; margin-top: 20px; text-align: center; line-height: 15px; color: black; font-size: 20px;"
+                            id="demo">점수 = 0</p>
+                    </div>
+                    <br>
+                </div>
+                <div class="col-md">
+                    <p
+                        style="border: solid 1px cornflowerblue; background:rgb(193, 213, 251); padding: 15px; margin-bottom: 4px; -moz-border-radius: 15px; -khtml-border-radius: 15px; -webkit-border-radius: 15px; border-radius: 15px; text-align: center; line-height: 15px; color: blue; font-size: 20px">
+                        가로 →</p>
+                    <div style="background:cornflowerblue; border-radius: 10px; padding: 5px; padding-left: 10px;">
+                        <h6>1. </h6>
+                        <h6>2. </h6>
+                        <h6>3. </h6>
+                        <h6>4. </h6>
+                        <h6>5. </h6>
+                        <h6>6. </h6>
+                        <h6>7. </h6>
+                        <h6>8. </h6>
+                        <h6>9. </h6>
+                    </div>
+                    <br>
+                    <p
+                        style="border: solid 1px cornflowerblue; background:rgb(193, 213, 251); padding: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; -webkit-border-radius: 15px; border-radius: 15px; margin-bottom: 4px; text-align: center; line-height: 15px; color: blue; font-size: 20px">
+                        세로 ↓ </p>
+                    <div style="background: cornflowerblue; border-radius: 10px; padding: 5px; padding-left: 10px;">
+                        <h6>10. </h6>
+                        <h6>11. </h6>
+                        <h6>12. </h6>
+                        <h6>13. </h6>
+                        <h6>14. </h6>
+                        <h6>15. </h6>
+                        <h6>16. </h6>
+                        <h6>17. </h6>
+                        <h6>18. </h6>
+                        <h6>19. </h6>
+                        <h6>20. </h6>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // alert("가로 = 빨간색 \n세로 = 파란색");
+        // 채점 함수
+        function crosswordcheck() {
+            // 요소 부여
+            var t1 = document.getElementById("t1").value;
+            var t2 = document.getElementById("t2").value;
+            var t3 = document.getElementById("t3").value;
+            var t4 = document.getElementById("t4").value;
+            var t5 = document.getElementById("t5").value;
+            var t6 = document.getElementById("t6").value;
+            var t7 = document.getElementById("t7").value;
+            var t8 = document.getElementById("t8").value;
+            var t9 = document.getElementById("t9").value;
+            var t10 = document.getElementById("t10").value;
+            var t11 = document.getElementById("t11").value;
+            var t12 = document.getElementById("t12").value;
+            var t13 = document.getElementById("t13").value;
+            var t14 = document.getElementById("t14").value;
+            var t15 = document.getElementById("t15").value;
+            var t16 = document.getElementById("t16").value;
+            var t17 = document.getElementById("t17").value;
+            var t18 = document.getElementById("t18").value;
+            var t19 = document.getElementById("t19").value;
+            var t20 = document.getElementById("t20").value;
+            var t21 = document.getElementById("t21").value;
+            var t22 = document.getElementById("t22").value;
+            var t23 = document.getElementById("t23").value;
+            var t24 = document.getElementById("t24").value;
+            var t25 = document.getElementById("t25").value;
+            var t26 = document.getElementById("t26").value;
+            var t27 = document.getElementById("t27").value;
+            var t28 = document.getElementById("t28").value;
+            var t29 = document.getElementById("t29").value;
+            var t30 = document.getElementById("t30").value;
+            var t31 = document.getElementById("t31").value;
+            var t32 = document.getElementById("t32").value;
+            var t33 = document.getElementById("t33").value;
+            var t34 = document.getElementById("t34").value;
+            var t35 = document.getElementById("t35").value;
+            var t36 = document.getElementById("t36").value;
+            var t37 = document.getElementById("t37").value;
+            var t38 = document.getElementById("t38").value;
+            var t39 = document.getElementById("t39").value;
+            var t40 = document.getElementById("t40").value;
+            var t41 = document.getElementById("t41").value;
+            var t42 = document.getElementById("t42").value;
+
+
+            // 채점 및 리셋
+            if (t1 == "수") {
+                document.getElementById("t1").classList.remove("block");
+                document.getElementById("t1").classList.remove("wrong");
+                document.getElementById("t1").classList.add("right");
+            } else {
+                document.getElementById("t1").classList.remove("block");
+                document.getElementById("t1").classList.remove("right");
+                document.getElementById("t1").classList.add("wrong");
+            }
+
+            if (t2 == "학") {
+                document.getElementById("t2").classList.remove("block");
+                document.getElementById("t2").classList.remove("wrong");
+                document.getElementById("t2").classList.add("right");
+            } else {
+                document.getElementById("t2").classList.remove("block");
+                document.getElementById("t2").classList.remove("right");
+                document.getElementById("t2").classList.add("wrong");
+            }
+
+            if (t3 == "생") {
+                document.getElementById("t3").classList.remove("block");
+                document.getElementById("t3").classList.remove("wrong");
+                document.getElementById("t3").classList.add("right");
+            } else {
+                document.getElementById("t3").classList.remove("block");
+                document.getElementById("t3").classList.remove("right");
+                document.getElementById("t3").classList.add("wrong");
+            }
+
+            if (t4 == "손") {
+                document.getElementById("t4").classList.remove("block");
+                document.getElementById("t4").classList.remove("wrong");
+                document.getElementById("t4").classList.add("right");
+            } else {
+                document.getElementById("t4").classList.remove("block");
+                document.getElementById("t4").classList.remove("right");
+                document.getElementById("t4").classList.add("wrong");
+            }
+
+            if (t5 == "수") {
+                document.getElementById("t5").classList.remove("block");
+                document.getElementById("t5").classList.remove("wrong");
+                document.getElementById("t5").classList.add("right");
+            } else {
+                document.getElementById("t5").classList.remove("block");
+                document.getElementById("t5").classList.remove("right");
+                document.getElementById("t5").classList.add("wrong");
+            }
+
+            if (t6 == "건") {
+                document.getElementById("t6").classList.remove("block");
+                document.getElementById("t6").classList.remove("wrong");
+                document.getElementById("t6").classList.add("right");
+            } else {
+                document.getElementById("t6").classList.remove("block");
+                document.getElementById("t6").classList.remove("right");
+                document.getElementById("t6").classList.add("wrong");
+            }
+
+            if (t7 == "교") {
+                document.getElementById("t7").classList.remove("block");
+                document.getElementById("t7").classList.remove("wrong");
+                document.getElementById("t7").classList.add("right");
+            } else {
+                document.getElementById("t7").classList.remove("block");
+                document.getElementById("t7").classList.remove("right");
+                document.getElementById("t7").classList.add("wrong");
+            }
+
+            if (t8 == "장") {
+                document.getElementById("t8").classList.remove("block");
+                document.getElementById("t8").classList.remove("wrong");
+                document.getElementById("t8").classList.add("right");
+            } else {
+                document.getElementById("t8").classList.remove("block");
+                document.getElementById("t8").classList.remove("right");
+                document.getElementById("t8").classList.add("wrong");
+            }
+
+            if (t9 == "선") {
+                document.getElementById("t9").classList.remove("block");
+                document.getElementById("t9").classList.remove("wrong");
+                document.getElementById("t9").classList.add("right");
+            } else {
+                document.getElementById("t9").classList.remove("block");
+                document.getElementById("t9").classList.remove("right");
+                document.getElementById("t9").classList.add("wrong");
+            }
+
+            if (t10 == "생") {
+                document.getElementById("t10").classList.remove("block");
+                document.getElementById("t10").classList.remove("wrong");
+                document.getElementById("t10").classList.add("right");
+            } else {
+                document.getElementById("t10").classList.remove("block");
+                document.getElementById("t10").classList.remove("right");
+                document.getElementById("t10").classList.add("wrong");
+            }
+
+            if (t11 == "님") {
+                document.getElementById("t11").classList.remove("block");
+                document.getElementById("t11").classList.remove("wrong");
+                document.getElementById("t11").classList.add("right");
+            } else {
+                document.getElementById("t11").classList.remove("block");
+                document.getElementById("t11").classList.remove("right");
+                document.getElementById("t11").classList.add("wrong");
+            }
+
+            if (t12 == "더") {
+                document.getElementById("t12").classList.remove("block");
+                document.getElementById("t12").classList.remove("wrong");
+                document.getElementById("t12").classList.add("right");
+            } else {
+                document.getElementById("t12").classList.remove("block");
+                document.getElementById("t12").classList.remove("right");
+                document.getElementById("t12").classList.add("wrong");
+            }
+
+            if (t13 == "보") {
+                document.getElementById("t13").classList.remove("block");
+                document.getElementById("t13").classList.remove("wrong");
+                document.getElementById("t13").classList.add("right");
+            } else {
+                document.getElementById("t13").classList.remove("block");
+                document.getElementById("t13").classList.remove("right");
+                document.getElementById("t13").classList.add("wrong");
+            }
+
+            if (t14 == "년") {
+                document.getElementById("t14").classList.remove("block");
+                document.getElementById("t14").classList.remove("wrong");
+                document.getElementById("t14").classList.add("right");
+            } else {
+                document.getElementById("t14").classList.remove("block");
+                document.getElementById("t14").classList.remove("right");
+                document.getElementById("t14").classList.add("wrong");
+            }
+
+            if (t15 == "고") {
+                document.getElementById("t15").classList.remove("block");
+                document.getElementById("t15").classList.remove("wrong");
+                document.getElementById("t15").classList.add("right");
+            } else {
+                document.getElementById("t15").classList.remove("block");
+                document.getElementById("t15").classList.remove("right");
+                document.getElementById("t15").classList.add("wrong");
+            }
+
+            if (t16 == "기") {
+                document.getElementById("t16").classList.remove("block");
+                document.getElementById("t16").classList.remove("wrong");
+                document.getElementById("t16").classList.add("right");
+            } else {
+                document.getElementById("t16").classList.remove("block");
+                document.getElementById("t16").classList.remove("right");
+                document.getElementById("t16").classList.add("wrong");
+            }
+
+            if (t17 == "냉") {
+                document.getElementById("t17").classList.remove("block");
+                document.getElementById("t17").classList.remove("wrong");
+                document.getElementById("t17").classList.add("right");
+            } else {
+                document.getElementById("t17").classList.remove("block");
+                document.getElementById("t17").classList.remove("right");
+                document.getElementById("t17").classList.add("wrong");
+            }
+
+            if (t18 == "장") {
+                document.getElementById("t18").classList.remove("block");
+                document.getElementById("t18").classList.remove("wrong");
+                document.getElementById("t18").classList.add("right");
+            } else {
+                document.getElementById("t18").classList.remove("block");
+                document.getElementById("t18").classList.remove("right");
+                document.getElementById("t18").classList.add("wrong");
+            }
+
+            if (t19 == "고") {
+                document.getElementById("t19").classList.remove("block");
+                document.getElementById("t19").classList.remove("wrong");
+                document.getElementById("t19").classList.add("right");
+            } else {
+                document.getElementById("t19").classList.remove("block");
+                document.getElementById("t19").classList.remove("right");
+                document.getElementById("t19").classList.add("wrong");
+            }
+
+            if (t20 == "월") {
+                document.getElementById("t20").classList.remove("block");
+                document.getElementById("t20").classList.remove("wrong");
+                document.getElementById("t20").classList.add("right");
+            } else {
+                document.getElementById("t20").classList.remove("block");
+                document.getElementById("t20").classList.remove("right");
+                document.getElementById("t20").classList.add("wrong");
+            }
+
+            if (t21 == "양") {
+                document.getElementById("t21").classList.remove("block");
+                document.getElementById("t21").classList.remove("wrong");
+                document.getElementById("t21").classList.add("right");
+            } else {
+                document.getElementById("t21").classList.remove("block");
+                document.getElementById("t21").classList.remove("right");
+                document.getElementById("t21").classList.add("wrong");
+            }
+
+            if (t22 == "동") {
+                document.getElementById("t22").classList.remove("block");
+                document.getElementById("t22").classList.remove("wrong");
+                document.getElementById("t22").classList.add("right");
+            } else {
+                document.getElementById("t22").classList.remove("block");
+                document.getElementById("t22").classList.remove("right");
+                document.getElementById("t22").classList.add("wrong");
+            }
+
+            if (t23 == "일") {
+                document.getElementById("t23").classList.remove("block");
+                document.getElementById("t23").classList.remove("wrong");
+                document.getElementById("t23").classList.add("right");
+            } else {
+                document.getElementById("t23").classList.remove("block");
+                document.getElementById("t23").classList.remove("right");
+                document.getElementById("t23").classList.add("wrong");
+            }
+
+            if (t24 == "석") {
+                document.getElementById("t24").classList.remove("block");
+                document.getElementById("t24").classList.remove("wrong");
+                document.getElementById("t24").classList.add("right");
+            } else {
+                document.getElementById("t24").classList.remove("block");
+                document.getElementById("t24").classList.remove("right");
+                document.getElementById("t24").classList.add("wrong");
+            }
+
+            if (t25 == "이") {
+                document.getElementById("t25").classList.remove("block");
+                document.getElementById("t25").classList.remove("wrong");
+                document.getElementById("t25").classList.add("right");
+            } else {
+                document.getElementById("t25").classList.remove("block");
+                document.getElementById("t25").classList.remove("right");
+                document.getElementById("t25").classList.add("wrong");
+            }
+
+            if (t26 == "조") {
+                document.getElementById("t26").classList.remove("block");
+                document.getElementById("t26").classList.remove("wrong");
+                document.getElementById("t26").classList.add("right");
+            } else {
+                document.getElementById("t26").classList.remove("block");
+                document.getElementById("t26").classList.remove("right");
+                document.getElementById("t26").classList.add("wrong");
+            }
+
+            if (t27 == "식") {
+                document.getElementById("t27").classList.remove("block");
+                document.getElementById("t27").classList.remove("wrong");
+                document.getElementById("t27").classList.add("right");
+            } else {
+                document.getElementById("t27").classList.remove("block");
+                document.getElementById("t27").classList.remove("right");
+                document.getElementById("t27").classList.add("wrong");
+            }
+
+            if (t28 == "물") {
+                document.getElementById("t28").classList.remove("block");
+                document.getElementById("t28").classList.remove("wrong");
+                document.getElementById("t28").classList.add("right");
+            } else {
+                document.getElementById("t28").classList.remove("block");
+                document.getElementById("t28").classList.remove("right");
+                document.getElementById("t28").classList.add("wrong");
+            }
+
+            if (t29 == "학") {
+                document.getElementById("t29").classList.remove("block");
+                document.getElementById("t29").classList.remove("wrong");
+                document.getElementById("t29").classList.add("right");
+            } else {
+                document.getElementById("t29").classList.remove("block");
+                document.getElementById("t29").classList.remove("right");
+                document.getElementById("t29").classList.add("wrong");
+            }
+
+            if (t30 == "자") {
+                document.getElementById("t30").classList.remove("block");
+                document.getElementById("t30").classList.remove("wrong");
+                document.getElementById("t30").classList.add("right");
+            } else {
+                document.getElementById("t30").classList.remove("block");
+                document.getElementById("t30").classList.remove("right");
+                document.getElementById("t30").classList.add("wrong");
+            }
+
+            if (t31 == "기") {
+                document.getElementById("t31").classList.remove("block");
+                document.getElementById("t31").classList.remove("wrong");
+                document.getElementById("t31").classList.add("right");
+            } else {
+                document.getElementById("t31").classList.remove("block");
+                document.getElementById("t31").classList.remove("right");
+                document.getElementById("t31").classList.add("wrong");
+            }
+
+            if (t32 == "품") {
+                document.getElementById("t32").classList.remove("block");
+                document.getElementById("t32").classList.remove("wrong");
+                document.getElementById("t32").classList.add("right");
+            } else {
+                document.getElementById("t32").classList.remove("block");
+                document.getElementById("t32").classList.remove("right");
+                document.getElementById("t32").classList.add("wrong");
+            }
+
+            if (t33 == "익") {
+                document.getElementById("t33").classList.remove("block");
+                document.getElementById("t33").classList.remove("wrong");
+                document.getElementById("t33").classList.add("right");
+            } else {
+                document.getElementById("t33").classList.remove("block");
+                document.getElementById("t33").classList.remove("right");
+                document.getElementById("t33").classList.add("wrong");
+            }
+
+            if (t34 == "고") {
+                document.getElementById("t34").classList.remove("block");
+                document.getElementById("t34").classList.remove("wrong");
+                document.getElementById("t34").classList.add("right");
+            } else {
+                document.getElementById("t34").classList.remove("block");
+                document.getElementById("t34").classList.remove("right");
+                document.getElementById("t34").classList.add("wrong");
+            }
+
+            if (t35 == "등") {
+                document.getElementById("t35").classList.remove("block");
+                document.getElementById("t35").classList.remove("wrong");
+                document.getElementById("t35").classList.add("right");
+            } else {
+                document.getElementById("t35").classList.remove("block");
+                document.getElementById("t35").classList.remove("right");
+                document.getElementById("t35").classList.add("wrong");
+            }
+
+            if (t36 == "학") {
+                document.getElementById("t36").classList.remove("block");
+                document.getElementById("t36").classList.remove("wrong");
+                document.getElementById("t36").classList.add("right");
+            } else {
+                document.getElementById("t36").classList.remove("block");
+                document.getElementById("t36").classList.remove("right");
+                document.getElementById("t36").classList.add("wrong");
+            }
+
+            if (t37 == "교") {
+                document.getElementById("t37").classList.remove("block");
+                document.getElementById("t37").classList.remove("wrong");
+                document.getElementById("t37").classList.add("right");
+            } else {
+                document.getElementById("t37").classList.remove("block");
+                document.getElementById("t37").classList.remove("right");
+                document.getElementById("t37").classList.add("wrong");
+            }
+
+            if (t38 == "고") {
+                document.getElementById("t38").classList.remove("block");
+                document.getElementById("t38").classList.remove("wrong");
+                document.getElementById("t38").classList.add("right");
+            } else {
+                document.getElementById("t38").classList.remove("block");
+                document.getElementById("t38").classList.remove("right");
+                document.getElementById("t38").classList.add("wrong");
+            }
+
+            if (t39 == "진") {
+                document.getElementById("t39").classList.remove("block");
+                document.getElementById("t39").classList.remove("wrong");
+                document.getElementById("t39").classList.add("right");
+            } else {
+                document.getElementById("t39").classList.remove("block");
+                document.getElementById("t39").classList.remove("right");
+                document.getElementById("t39").classList.add("wrong");
+            }
+
+            if (t40 == "감") {
+                document.getElementById("t40").classList.remove("block");
+                document.getElementById("t40").classList.remove("wrong");
+                document.getElementById("t40").classList.add("right");
+            } else {
+                document.getElementById("t40").classList.remove("block");
+                document.getElementById("t40").classList.remove("right");
+                document.getElementById("t40").classList.add("wrong");
+            }
+
+            if (t41 == "래") {
+                document.getElementById("t41").classList.remove("block");
+                document.getElementById("t41").classList.remove("wrong");
+                document.getElementById("t41").classList.add("right");
+            } else {
+                document.getElementById("t41").classList.remove("block");
+                document.getElementById("t41").classList.remove("right");
+                document.getElementById("t41").classList.add("wrong");
+            }
+
+            if (t42 == "육") {
+                document.getElementById("t42").classList.remove("block");
+                document.getElementById("t42").classList.remove("wrong");
+                document.getElementById("t42").classList.add("right");
+            } else {
+                document.getElementById("t42").classList.remove("block");
+                document.getElementById("t42").classList.remove("right");
+                document.getElementById("t42").classList.add("wrong");
+            }
+        }
+
+
+        // 채점결과 함수
+        var score = 0;
+        function cross_score() {
+            score = 0;
+
+            var t1 = document.getElementById("t1").value;
+            var t2 = document.getElementById("t2").value;
+            var t3 = document.getElementById("t3").value;
+            var t4 = document.getElementById("t4").value;
+            var t5 = document.getElementById("t5").value;
+            var t6 = document.getElementById("t6").value;
+            var t7 = document.getElementById("t7").value;
+            var t8 = document.getElementById("t8").value;
+            var t9 = document.getElementById("t9").value;
+            var t10 = document.getElementById("t10").value;
+            var t11 = document.getElementById("t11").value;
+            var t12 = document.getElementById("t12").value;
+            var t13 = document.getElementById("t13").value;
+            var t14 = document.getElementById("t14").value;
+            var t15 = document.getElementById("t15").value;
+            var t16 = document.getElementById("t16").value;
+            var t17 = document.getElementById("t17").value;
+            var t18 = document.getElementById("t18").value;
+            var t19 = document.getElementById("t19").value;
+            var t20 = document.getElementById("t20").value;
+            var t21 = document.getElementById("t21").value;
+            var t22 = document.getElementById("t22").value;
+            var t23 = document.getElementById("t23").value;
+            var t24 = document.getElementById("t24").value;
+            var t25 = document.getElementById("t25").value;
+            var t26 = document.getElementById("t26").value;
+            var t27 = document.getElementById("t27").value;
+            var t28 = document.getElementById("t28").value;
+            var t29 = document.getElementById("t29").value;
+            var t30 = document.getElementById("t30").value;
+            var t31 = document.getElementById("t31").value;
+            var t32 = document.getElementById("t32").value;
+            var t33 = document.getElementById("t33").value;
+            var t34 = document.getElementById("t34").value;
+            var t35 = document.getElementById("t35").value;
+            var t36 = document.getElementById("t36").value;
+            var t37 = document.getElementById("t37").value;
+            var t38 = document.getElementById("t38").value;
+            var t39 = document.getElementById("t39").value;
+            var t40 = document.getElementById("t40").value;
+            var t41 = document.getElementById("t41").value;
+            var t42 = document.getElementById("t42").value;
+
+            //  맞는지 틀린지 검사
+            if ((t1 == "수" && t2 == "학")) {
+                score++;
+            }
+
+            if ((t4 == "손" && t5 == "수" && t6 == "건")) {
+                score++;
+            }
+            document.getElementById("demo").innerHTML = "점수 = " + score * 5;
+        }
+    </script>
+
+    <div class="copyright py-4 text-center text-white">
+        <div class="container"><small>Copyright &copy; Our Website 21.12.20</small></div>
+    </div>
+
+</body>
+
+</html>

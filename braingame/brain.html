@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>에듀키즈-두뇌게임</title>
+    <!-- 캐싱방지 -->
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0"/>
+    <!-- 캐싱방지 끝 -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
+    <!-- 기본 css 파일  -->
+    <link href="../main/styles.css" rel="stylesheet" type="text/css"/>
+    <!-- 기본 파일 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 애니메이션 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!--    Navbar 관련 -->
+    <script src="../main/navbar.js" defer></script>
+    <link href="../main/navbar.css" rel="stylesheet"/>
+
+    <style>
+        @font-face 
+        {
+            font-family: 'CookieRun-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face 
+        {
+            font-family: 'CookieRunOTF-Bold';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/CookieRunOTF-Bold00.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'CookieRun-Regular';
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-left: 0px;
+        }
+
+        header {
+            height: 80px;
+        }
+
+        /* 게임 타이머 관련 */
+        .skills {
+            padding-top: 4px;
+            color: white;
+            background-color: #04AA6D;
+        }
+
+        /* 게임 타이머 끝 */
+
+    </style>
+</head>
+
+<body>
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<!-- 헤더 시작 -->
+<!--<header>-->
+<!--    <div style="width: 1300px; margin: 0px auto;">-->
+<!--        <img src="https://media.discordapp.net/attachments/802849755751252002/909798587674796072/logowebver.png" style="padding-top: 15px;"/>-->
+<!--    </div>-->
+<!--</header>-->
+
+<nav class="navbar">
+    <div class="navbar_logo">
+        <a href="http://1.253.254.107/deu20163137/edugame/main/">
+            <img src="https://media.discordapp.net/attachments/802849755751252002/909798587674796072/logowebver.png"/>
+        </a>
+    </div>
+
+    <ul class="navbar_menu" style="padding-top: 15px;">
+        <li><a href="http://1.253.254.107/deu20163137/edugame/main/#portfolio">Game</a></li>
+        <li><a href="http://1.253.254.107/deu20163137/edugame/signup/signup.html">SignIn</a></li>
+    </ul>
+
+</nav>
+
+<!-- 헤더 끝 -->
+
+<!-- 메인 시작 -->
+<div style="background-color:#efcded; height: 100%;">
+    <div style="width: 100%; height: 100vh; padding-top: 200px; " id="app">
+        <div v-show="mainload==='true'">
+            <div v-if="aftergamestart==='true'" class="animate__animated"
+                 v-bind:class="{ animate__fadeInDown : aftergamestart==='true'}">
+                <!-- 시간초 타이머 -->
+                <br>
+                <br>
+                <div class="container">
+                    <center>
+                        <p style="font-weight: bold; font-size: 24px;">{{gametimer}}</p>
+                    </center>
+                    <div class="skills" v-bind:style="{width: gametimerwidth+'%'}">
+                    </div>
+                </div>
+                <!-- 시간초 타이머 끝 -->
+                <!-- 메인게임 시작 -->
+                <div>
+                    <br>
+                    <br>
+                    <center>
+                        <p style="font-size: 30px; font-weight: bold;">라운드 {{round}}</p>
+                        <p style="font-size: 30px; font-weight: bold;"> {{one}} + {{two}} = <input v-model="inputs"></p>
+                    </center>
+                </div>
+                <!-- 메인게임 끝 -->
+            </div>
+            <div v-if="loading==='true'" class="animate__animated" v-bind:class="{ animate__fadeOut : isgamestart}">
+                <center>
+                    <img style="width:70%" src="https://media.discordapp.net/attachments/802849755751252002/909798009443868742/edukidslogo.png"/>
+                    <p style="font-size: 60px;">두뇌훈련 & 숫자풀이</p>
+                    <p style="font-size: 30px;">제한시간내에 물음표에 들어갈 답을 입력하세요!</p>
+                    <p style="font-size: 30px;">나의 최고 라운드 : {{vueuserbest}}라운드</p>
+                    <p v-if="startbtn===false" style="font-size: 30px; font-weight: bold;" v-on:click="showrank">랭킹</p>
+                    <p v-if="startbtn===false" class="animate__animated animate__pulse animate__infinite" style="font-size: 40px; font-weight: bold;" v-on:click="gamestart">플레이!</p>
+                </center>
+            </div>
+            <div v-if="onloading==true">
+                <center>
+                <p style="font-weight: 700; font-size: 30px;">로딩중입니다...</p>
+                <div class="spinner-border" role="status">
+                </div>
+                </center>
+            </div>
+            <div v-if="showranking===true">
+                <center>
+                    <p style="font-size: 50px; font-weight: bold;">랭킹</p>
+                    <p style="font-size: 35px; color:#e2a000;">1위 {{rankone}}점</p>
+                    <p style="font-size: 35px; color: #666666;">2위 {{ranktwo}}점</p>
+                    <p style="font-size: 35px; color: #a47c6d ">3위 {{rankthree}}점</p>
+                    <p style="font-size: 30px;">4위 {{rankfour}}점</p>
+                    <p style="font-size: 30px;">5위 {{rankfive}}점</p>
+                    <p style="font-size: 30px;">6위 {{ranksix}}점</p>
+                    <p style="font-size: 30px;">7위 {{rankseven}}점</p>
+                    <p style="font-size: 30px;">8위 {{rankeight}}점</p>
+                    <p style="font-size: 30px;">9위 {{ranknine}}점</p>
+                    <p style="font-size: 30px;">10위 {{rankten}}점</p>
+                    <p style="font-size: 30px; font-weight: bold;" v-on:click="gotomain">메인으로 돌아가기</p>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </center>
+            </div>
+        </div>
+        <div v-show="mainload==='false'">
+            <center>
+                <p>게임플레이를 위한 화면크기가 충족되지 않았습니다.<br>창 크기를 키워주세요!(전체화면)</p>
+                <p>현재 화면 크기 가로 : {{wdwwidth}}, 세로 : {{wdwheight}}</p>
+                <p>필요 크기 가로 : 500, 세로 : 300</p>
+            </center>
+        </div>
+
+    </div>
+    <!-- 메인 끝 -->
+
+
+    <!-- 스크립트 시작 -->
+    <script type="module">
+        var userip = "";
+        var userbest = 0;
+        var vm = new Vue(
+            {
+                el: "#app",
+                data:
+                    {
+                        plzenter: "단어를 입력해주세요.",
+                        inputs: "",
+                        wdwwidth: "",
+                        wdwheight: "",
+                        mainload: "true",
+                        loading: "false",
+                        vueuserbest: "",
+                        vueuserip: "",
+                        isgamestart: false,
+                        gametimer: 10,
+                        gametimerwidth: "100",
+                        aftergamestart: "false",
+                        one: "?",
+                        two: "?",
+                        answer: 0,
+                        round: 1,
+                        startbtn: false,
+                        onloading: true,
+                        showranking: false,
+                        // 랭킹 정보 1위~10위
+                        rankone: "랭킹 정보가 없습니다.",
+                        ranktwo: "랭킹 정보가 없습니다.",
+                        rankthree: "랭킹 정보가 없습니다.",
+                        rankfour: "랭킹 정보가 없습니다.",
+                        rankfive: "랭킹 정보가 없습니다.",
+                        ranksix: "랭킹 정보가 없습니다.",
+                        rankseven: "랭킹 정보가 없습니다.",
+                        rankeight: "랭킹 정보가 없습니다.",
+                        ranknine: "랭킹 정보가 없습니다.",
+                        rankten: "랭킹 정보가 없습니다.",
+                    },
+                watch:
+                    {
+                        inputs: function () 
+                        {
+                            if (this.inputs == this.answer) 
+                            {
+                                alert("정답입니다! 엔터를 눌러 다음 라운드로");
+                                this.inputs = null;
+                                this.round += 1;
+                                this.gametimerwidth = "100";
+                                this.gametimer = 10;
+                                this.makenumber();
+                            }
+                        },
+
+                    },
+                methods:
+                    {
+
+
+                        //랜덤 숫자 생성
+                        makenumber() 
+                        {
+                            var rand1_0_99 = 0;
+                            var rand2_0_99 = 0;
+                            if (this.round < 10) 
+                            {
+                                rand1_0_99 = Math.floor(Math.random() * 10);
+                                rand2_0_99 = Math.floor(Math.random() * 10);
+                            }else if (this.round >= 10 && this.round <= 30) 
+                            {
+                                rand1_0_99 = Math.floor(Math.random() * 100);
+                                rand2_0_99 = Math.floor(Math.random() * 100);
+                            }else 
+                            {
+                                rand1_0_99 = Math.floor(Math.random() * 1000);
+                                rand2_0_99 = Math.floor(Math.random() * 1000);
+                            }
+
+                            this.one = rand1_0_99;
+                            this.two = rand2_0_99;
+                            this.answer = this.one + this.two;
+
+                        },
+
+                        // 화면크기 관련 코드
+                        handleResize() {
+
+                            this.wdwwidth = window.innerWidth;
+                            this.wdwheight = window.innerHeight;
+                            if (this.wdwwidth < 500 || this.wdwheight < 300) 
+                            {
+                                this.mainload = "false";
+                            } else {
+                                this.mainload = "true";
+                            }
+                        },
+
+                        showrank()
+                        {
+                            this.showranking = true;
+                            this.loading = "false";
+                        },
+
+                        gotomain()
+                        {
+                            window.location.reload();
+                        },
+
+                        gamestart() {
+                            console.log("게임 시작!");
+                            this.startbtn = true,
+                            this.isgamestart = true;
+
+                            // 게임시작 타이머
+                            const gamestartInterval = () => 
+                            {
+                                setTimeout(() => 
+                                {
+                                    this.aftergamestart = "true";
+                                    this.gametimer = "게임이 곧 시작됩니다!";
+                                    setTimeout(() => 
+                                    {
+                                        this.gametimer = 10;
+                                        this.makenumber();
+                                        loadingInterval();
+                                        numberInterval();
+                                    }, 2000)
+                                }, 1000)
+                            }
+                            gamestartInterval();
+
+                            // 로딩바 타이머
+                            const loadingInterval = () => 
+                            {
+                                setTimeout(() => {
+                                    var timer = parseFloat(this.gametimerwidth);
+                                    timer -= 0.25;
+                                    this.gametimerwidth = timer.toString();
+                                    if (timer > 0) 
+                                    {
+                                        loadingInterval();
+                                    } 
+                                    else 
+                                    {
+                                        if (userbest < this.round) 
+                                        {
+                                            dbRef.child(userip.toString()).child("BestScore").set(this.round);
+                                            alert("개인 신기록을 달성하셨습니다.");
+                                        }
+                                        var getonlyscore = (this.rankten).split('/');
+                                        
+
+                                        if (this.round > getonlyscore[1]) 
+                                        {
+                                            if (userbest < this.round) 
+                                            {
+                                                var usernickname = prompt("점수가 10위권 이내입니다 점수표에 닉네임을 등록하시려면 닉네임을 입력해주세요");
+                                                if (usernickname != null) 
+                                                {
+                                                    dbRef.child(userip.toString()).child("Nickname").set(usernickname);
+                                                }
+                                            }
+
+                                        }
+                                        alert("게임 끝!");
+                                        window.location.reload();
+                                    }
+                                }, 25)
+                            }
+
+                            // 숫자 타이머
+                            const numberInterval = () => 
+                            {
+                                setTimeout(() => 
+                                {
+                                    this.gametimer -= 1;
+                                    if (this.gametimer > 0)
+                                    {
+                                        numberInterval();
+                                    }
+                                }, 1000)
+                            }
+
+
+                        },
+                    },
+                computed:
+                    {
+                        // reversedMessage: function(){
+                        //     return this.message.split('').reverse().join('')
+                        // },
+                    },
+                created() 
+                {
+                    //화면크기 제어 코드
+                    window.addEventListener('resize', this.handleResize);
+                    this.handleResize();
+                },
+                mounted() 
+                {
+                },
+                destroyed() 
+                {
+                    //화면크기 제어 코드
+                    window.removeEventListener('resize', this.handleResize);
+                },
+            });
+
+
+        // db 부분 시작
+        const firebaseConfig = 
+        {
+            apiKey: "AIzaSyDoYRRXA53PGLG1DpZQVY0E24kA5AgJdLs",
+            authDomain: "deukids.firebaseapp.com",
+            databaseURL: "https://deukids-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "deukids",
+            storageBucket: "deukids.appspot.com",
+            messagingSenderId: "774542499110",
+            appId: "1:774542499110:web:44626a4823bdb19dbbb5e7"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        var dbRef = firebase.database().ref().child("userdata");
+
+        async function getIpClient() 
+        {
+            try 
+            {
+                const response = await axios.get('https://api.ipify.org?format=json');
+                userip = response.data.ip.replaceAll('.','');
+                dbRef.child(userip).child("BestScore").once("value",snapshot => 
+                {
+                    if (snapshot.exists())
+                    {
+                        userbest = snapshot.val();
+                        vm.vueuserbest = userbest;
+                        vm.vueuserip = userip;
+                        console.log(userip, userbest);
+                        vm.loading = "true";
+                        vm.onloading = false;
+                    }
+                    else
+                    {
+                        dbRef.child(userip.toString()).child("BestScore").set(0);
+                        userbest = 0;
+                        vm.vueuserbest = userbest;
+                        vm.vueuserip = userip;
+                        vm.loading = "true";
+                        vm.onloading = false;
+                    }
+                });
+            } 
+            catch (error) {
+                console.error(error);
+            }
+        }
+        getIpClient();
+        // db부분 끝
+
+
+        // 랭킹관련
+        class Stack
+        {
+            // 스택 구현
+            constructor()
+            {
+                this.top = -1;
+                this.dataStore = [];
+            }
+            push(element)
+            {
+                this.top++;
+                this.dataStore[this.top] = element;
+            }
+            pop()
+            {
+                if(this.top>-1)
+                {
+                    let val = this.dataStore[this.top];
+                    this.top--;
+                    return val;
+                }
+                return null;
+            }
+            peek()
+            {
+                return this.dataStore[this.top];
+            }
+            get length()
+            {
+                return this.top+1;
+            }
+            clear()
+            {
+                this.top = 0;
+                this.dataStore = [];
+            }
+        }
+
+        var rankings = new Stack();
+        var ranking = [];
+        async function getranking()
+        {
+            dbRef.orderByChild("BestScore").limitToLast(10).startAt(1).once("value",snapshot => 
+            {
+                snapshot.forEach(function(data) 
+                {
+                    var usernick = data.val().Nickname;
+                    if (usernick==undefined) 
+                    {
+                        usernick = "익명";
+                    }
+                    rankings.push(usernick + "/" + data.val().BestScore);
+                });
+                for (let index = 0; index <= rankings.length+10; index++) 
+                {
+                    ranking[index] = rankings.pop();
+                }
+                for (let i = 0; i <= ranking.length; i++) 
+                {
+                    if (ranking[i] == null) 
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        if (i == 0) 
+                        {
+                            vm.rankone = ranking[i];
+                        }
+                        else if (i == 1) 
+                        {
+                            vm.ranktwo = ranking[i];
+                        }
+                        else if (i == 2) 
+                        {
+                            vm.rankthree = ranking[i];
+                        }
+                        else if (i == 3) 
+                        {
+                            vm.rankfour = ranking[i];
+                        }
+                        else if (i == 4) 
+                        {
+                            vm.rankfive = ranking[i];
+                        }
+                        else if (i == 5) 
+                        {
+                            vm.ranksix = ranking[i];
+                        }
+                        else if (i == 6) 
+                        {
+                            vm.rankseven = ranking[i];
+                        }
+                        else if (i == 7) 
+                        {
+                            vm.rankeight = ranking[i];
+                        }
+                        else if (i == 8) 
+                        {
+                            vm.ranknine = ranking[i];
+                        }
+                        else if (i == 9) 
+                        {
+                            vm.rankten = ranking[i];
+                        }
+                    }
+                }
+            });
+        }
+        getranking();         
+        // 랭킹 끝
+    </script>
+
+    <div class="copyright py-4 text-center text-white">
+        <div class="container"><small>Copyright &copy; Our Website 21.12.20</small></div>
+    </div>
+</body>
+</html>
